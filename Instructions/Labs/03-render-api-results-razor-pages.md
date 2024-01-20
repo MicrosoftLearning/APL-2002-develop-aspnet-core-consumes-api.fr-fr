@@ -1,60 +1,60 @@
 ---
 lab:
-  title: "Exercice\_: afficher les réponses de l’API dans ASP.NET Core Razor\_Pages"
+  title: "Exercice\_: Afficher les réponses d’une API dans ASP.NET Core Razor Pages"
   module: 'Module: Render API responses in ASP.NET Core Razor Pages'
 ---
 
-Dans cet exercice, vous allez apprendre à ajouter du code à une application ASP.NET Core Razor Pages pour rendre les résultats des opérations HTTP. Ce code est ajouté aux fichiers *.cshtml*. Le code qui effectue les opérations dans les fichiers *.cshtml.cs* est terminé.
+Dans cet exercice, vous découvrirez comment ajouter le code à une application ASP.NET Core Razor Pages pour afficher les résultats des opérations HTTP. Ce code est ajouté aux fichiers *.cshtml.cs*. Le code permettant d’exécuter les opérations dans les fichiers *.cshtml* est terminé.
 
 ## Objectifs
 
-À la fin de cet exercice, vous serez en mesure de :
+À l’issue de ce module, vous pourrez :
 
-* Implémenter des mots-clés Razor dans une application
-* Intégrer le code C# à la syntaxe Razor Pages
+* implémenter des mots-clés Razor dans une application
+* intégrer du code C# à la syntaxe Razor Pages
 
 ## Prérequis
 
-Pour terminer l’exercice, vous devez avoir installé les éléments suivants sur votre système :
+Pour effectuer l’exercice, les éléments suivants doivent être installés dans votre système :
 
 * [Visual Studio Code](https://code.visualstudio.com)
-* [La dernière version du kit de développement logiciel .NET 7.0](https://dotnet.microsoft.com/download/dotnet/7.0)
-* [L’extension C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) pour Visual Studio Code
+* [la dernière version du kit de développement logiciel (SDK) .NET 7.0](https://dotnet.microsoft.com/download/dotnet/7.0)
+* L’[Extension C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) pour Visual Studio Code
 
-**Estimation de la durée de cet exercice** : 30 minutes.
+**Estimation de la durée de cet exercice** : 30 minutes
 
 ## Scénario de l’exercice
 
 Cet exercice comporte deux composants :
 
-* Une application web qui envoie des requêtes HTTP à une API. L’application s’exécute sur `http://localhost:5010`.
-* Une API qui répond aux requêtes HTTP. L’API s’exécute sur `http://localhost:5050`.
+* une application web qui envoie des requêtes HTTP à une API L’application s’exécute sur `http://localhost:5010`
+* une API qui répond aux requêtes HTTP L’application s’exécute sur `http://localhost:5050`
 
 ![Décoratif](media/02-architecture.png)
 
 ## Téléchargement du code
 
-Dans cette section, vous téléchargez le code de l’application web Fruit et de l’API Fruit. Vous exécutez également l’API Fruit localement afin qu’elle soit disponible pour l’application web.
+Dans cette section, vous allez télécharger le code de l’application web Fruit et de l’API Fruit. Vous allez également exécuter l’API Fruit localement afin qu’elle soit disponible pour l’application web.
 
-### Tâche 1 : télécharger et exécuter le code de l’API
+### Tâche 1 : télécharger et exécuter le code de l’API
 
-1. Cliquez avec le bouton droit sur le lien suivant et sélectionnez l’option **Enregistrer le lien sous**. 
+1. Cliquez avec le bouton droit sur le lien suivant, puis sélectionnez l’option **Enregistrer le lien**. 
 
-    * [code du projet FruitAPI](https://raw.githubusercontent.com/MicrosoftLearning/APL-2002-develop-aspnet-core-consumes-api/master/Allfiles/Downloads/FruitAPI.zip)
+    * [Code du projet FruitAPI](https://raw.githubusercontent.com/MicrosoftLearning/APL-2002-develop-aspnet-core-consumes-api/master/Allfiles/Downloads/FruitAPI.zip)
 
-1. Lancez l'**Explorateur de fichiers** et accédez à l’emplacement où le fichier a été enregistré.
+1. Ouvrez l’**Explorateur de fichiers** et accédez à l’emplacement où le fichier a été enregistré.
 
 1. Décompressez le fichier dans son propre dossier.
 
-1. Ouvrez le **Terminal Windows** ou une **Invite de commandes** et accédez à l’emplacement où vous avez extrait le code de l’API.
+1. Ouvrez **Terminal Windows**, ou une **invite de commandes**, puis accédez à l’emplacement où vous avez extrait le code de l’API.
 
-1. Dans le volet **Terminal Windows**, exécutez la commande `dotnet` suivante :
+1. Dans le volet du **Terminal Windows**, exécutez la commande `dotnet` suivante :
 
     ```
     dotnet run
     ```
 
-1. Voici un exemple de sortie. Notez la ligne `Now listening on: http://localhost:5050` dans la sortie. Elle identifie l’hôte et le port de l’API.
+1. Voici un exemple de sortie générée. Notez la ligne `Now listening on: http://localhost:5050` dans la sortie. Elle indique l’hôte et le port de l’API.
 
     ```
     info: Microsoft.EntityFrameworkCore.Update[30100]
@@ -74,31 +74,31 @@ Dans cette section, vous téléchargez le code de l’application web Fruit et d
 
 ### Tâche 2 : télécharger et ouvrir le projet d’application web
 
-1. Cliquez avec le bouton droit sur le lien suivant et sélectionnez l’option **Enregistrer le lien sous**. 
+1. Cliquez avec le bouton droit sur le lien suivant, puis sélectionnez l’option **Enregistrer le lien**. 
 
     * [Code du projet d’affichage de l’application web Fruit](https://raw.githubusercontent.com/MicrosoftLearning/APL-2002-develop-aspnet-core-consumes-api/master/Allfiles/Downloads/FruitWebApp-render.zip)
 
-1. Lancez l'**Explorateur de fichiers** et accédez à l’emplacement où le fichier a été enregistré.
+1. Ouvrez l’**Explorateur de fichiers** et accédez à l’emplacement où le fichier a été enregistré.
 
 1. Décompressez le fichier dans son propre dossier.
 
-1. Lancez Visual Studio Code et sélectionnez **Fichier**, puis **Ouvrir le dossier...** dans la barre de menus.
+1. Dans Visual Studio Code, sélectionnez l**Fichier**, puis **Ouvrir le dossier** dans le menu.
 
-1. Accédez à l’emplacement où vous avez décompressé les fichiers du projet et sélectionnez le dossier *FruitWebApp-render*.
+1. Accédez à l’emplacement où vous avez décompressé les fichiers projet et sélectionnez le *dossier FruitWebApp-render*.
 
-1. La structure du projet dans le volet **Explorateur** doit être similaire à la capture d’écran suivante. Si le volet **Explorateur** n’est pas visible, sélectionnez **Afficher**, puis **Explorateur** dans la barre de menus.
+1. La structure du projet dans le volet **Explorateur** doit être similaire à la capture d’écran suivante. Si le volet **Explorateur**n’est pas visible, dans le menu, sélectionnez **Affichage**, puis **Explorateur**.
 
     ![Capture d’écran montrant la structure du projet de l’application web Fruit.](media/03-web-app-render-structure.png)
 
->**Remarque :** prenez le temps de passer en revue le code dans chacun des fichiers en cours de modification tout au long de cet exercice. Le code est fortement commenté et peut vous aider à comprendre la base de code.
+>**Remarque :** prenez le temps de passer en revue le code dans chacun des fichiers en cours de modification tout au long de cet exercice. Le code contient de nombreux commentaires qui peuvent vous aider à comprendre la base de code.
 
-## Implémenter du code pour afficher les données sur la page d’index
+## Implémenter du code pour afficher des données sur la page `Index`
 
-L’application web Fruit affiche les exemples de données de l’API sur la page d’accueil. Vous devez ajouter du code pour itérer dans les exemples de données retournés par l’opération HTTP `GET` effectuée dans le fichier code-behind.
+L’application web Fruit affiche les exemples de données d’API sur la page d’accueil. Vous devez ajouter du code pour itérer dans les exemples de données retournés par l’opération HTTP `GET` effectuée dans le fichier code-behind.
 
-### Tâche 1 : ajouter du code pour afficher des données dans une table
+### Tâche 1 : ajouter du code pour afficher des données dans un tableau
 
-1. Sélectionnez le fichier *Index.cshtml* dans le volet **Explorateur** pour l’ouvrir et le modifier.
+1. Sélectionnez le fichier *Index.cshtml* dans le volet **Explorateur** pour l’ouvrir dans l’éditeur.
 
 1. Ajoutez le code suivant entre les commentaires `@* Begin render API data code block *@` et `@* End render API data code block *@`.
 
@@ -146,27 +146,27 @@ L’application web Fruit affiche les exemples de données de l’API sur la pag
     </tbody>
     ```
 
-1. Enregistrez les modifications apportées à *Index.cshtml* et passez en revue les commentaires dans le code.
+1. Enregistrez les modifications apportées à *Index.cshtml* et passez en revue les commentaires présents dans le code.
 
-1. Dans le menu supérieur de Visual Studio Code, sélectionnez **Exécuter \| Démarrer le débogage** ou sélectionnez **F5**. Une fois le projet terminé, la création d’une fenêtre de navigateur doit être lancée avec l’application web en cours d’exécution.
+1. Dans le menu Visual Studio Code, sélectionnez **Exécuter \| Commencer le débogage** ou appuyez sur **F5**. Une fois le projet terminé, la création d’une fenêtre de navigateur doit être lancée avec l’application web en cours d’exécution
 
 1. Vérifiez que la page Index affiche les exemples de données de l’API.
 
-    >**Remarque :** les fonctions **Ajouter à la liste**, **Modifier** et **Supprimer** ne fonctionneront pas tant que vous n’ajouterez pas de code pour celles-ci plus loin dans cet exercice.
+    >**Remarque :** les fonctions **Ajouter à la liste**, **Modifier** et **Supprimer** ne fonctionneront pas tant que vous n’ajouterez pas de code pour elles, plus loin dans cet exercice.
 
     >**Remarque :** vous pouvez ignorer en toute sécurité l’invite ci-dessous si elle apparaît lorsque vous exécutez l’application.
 
     ![Capture d’écran de l’invite permettant d’installer un certificat auto-signé.](media/install-cert.png)
 
-1. Pour continuer avec l’exercice, fermez le navigateur ou l’onglet de navigation, puis dans Visual Studio Code, sélectionnez **Exécuter \| Arrêter le débogage** ou effectuez **Maj + F5**.
+1. Pour continuer avec l’exercice, fermez le navigateur ou l’onglet, puis, dans Visual Studio Code, sélectionnez **Exécuter \| Arrêter le débogage** ou appuyez sur **Maj + F5**.
 
-## Implémenter du code pour gérer la fonctionnalité **Ajouter à la liste**
+## Implémenter du code pour gérer la fonction `Add to list`
 
-Les opérations d’ajout, de modification et de suppression sont gérées sur une page *.cshtml* distincte du projet. Dans cette section, vous allez ajouter du code pour créer un formulaire dans le fichier *Add.cshtml* pour activer l’ajout de données à la liste.
+Les opérations d’ajout, de modification et de suppression sont chacune gérées sur une page *.cshtml* distincte du projet. Dans cette section, vous allez ajouter du code pour créer un formulaire dans le fichier *Add.cshtml* afin d’activer l’ajout de données à la liste.
 
 ### Tâche 1 : ajouter du code pour créer le formulaire Ajouter des données
 
-1. Sélectionnez le fichier *Add.cshtml* dans le volet **Explorateur** pour l’ouvrir et le modifier.
+1. Sélectionnez le fichier *Add.cshtml* dans le volet **Explorateur** pour l’ouvrir dans l’éditeur.
 
 1. Ajoutez le code suivant entre les commentaires `@* Begin render Add code block *@` et `@* End render Add code block *@`.
 
@@ -200,25 +200,25 @@ Les opérations d’ajout, de modification et de suppression sont gérées sur u
     </form>
     ```
 
-1. Enregistrez les modifications apportées à *Add.cshtml* et passez en revue les commentaires dans le code.
+1. Enregistrez les modifications apportées à *Add.cshtml* et passez en revue les commentaires présents dans le code.
 
-1. Dans le menu supérieur de Visual Studio Code, sélectionnez **Exécuter \| Démarrer le débogage** ou sélectionnez **F5**. Une fois le projet terminé, la création d’une fenêtre de navigateur doit être lancée avec l’application web en cours d’exécution.
+1. Dans le menu Visual Studio Code, sélectionnez **Exécuter \| Commencer le débogage** ou appuyez sur **F5**. Une fois le projet terminé, la création d’une fenêtre de navigateur doit être lancée avec l’application web en cours d’exécution
 
-1. Cliquez sur **Ajouter à la liste** sur la page.
+1. Sélectionnez **Ajouter à la liste** sur la page.
 
-1. Entrez le nom d’un fruit que vous souhaitez ajouter à la liste et cochez la case pour indiquer qu’il est disponible.
+1. Saisissez le nom d’un fruit que vous souhaitez ajouter à la liste et cochez la case pour indiquer qu’il est disponible.
 
-1. Sélectionnez **Créer** pour ajouter l’entrée à la liste et revenir à la page d’accueil. Vérifiez que votre entrée a été ajoutée à la liste.
+1. Sélectionnez **Créer** pour ajouter l’entrée à la liste. Vous reviendrez ensuite à la page d’accueil. Vérifiez que votre entrée a été ajoutée à la liste.
 
-1. Pour continuer avec l’exercice, fermez le navigateur ou l’onglet de navigation, puis dans Visual Studio Code, sélectionnez **Exécuter \| Arrêter le débogage** ou effectuez **Maj + F5**.
+1. Pour continuer avec l’exercice, fermez le navigateur ou l’onglet, puis, dans Visual Studio Code, sélectionnez **Exécuter \| Arrêter le débogage** ou appuyez sur **Maj + F5**.
 
-## Implémenter du code pour gérer la fonctionnalité **Modifier**
+## Implémenter du code pour gérer la fonction `Edit`
 
-Dans cette section, vous allez ajouter du code pour créer un formulaire dans le fichier *Edit.cshtml* afin d’activer la modification des données dans la liste.
+Dans cette section, vous allez ajouter du code pour créer un formulaire dans le fichier *Edit.cshtml* afin d’activer la modification de données à la liste.
 
-### Tâche 1 : ajouter du code pour le formulaire de modification
+### Tâche 1 : ajouter du code pour le formulaire Modifier des données
 
-1. Sélectionnez le fichier *Edit.cshtml* dans le volet **Explorateur** pour l’ouvrir et le modifier.
+1. Sélectionnez le fichier *Edit.cshtml* dans le volet **Explorateur** pour l’ouvrir dans l’éditeur.
 
 1. Ajoutez le code suivant entre les commentaires `@* Begin render Edit code block *@` et `@* End render Edit code block *@`.
 
@@ -252,25 +252,25 @@ Dans cette section, vous allez ajouter du code pour créer un formulaire dans le
     </form>
     ```
 
-1. Enregistrez les modifications apportées à *Edit.cshtml* et passez en revue les commentaires dans le code.
+1. Enregistrez les modifications apportées à *Edit.cshtml* et passez en revue les commentaires présents dans le code.
 
-1. Dans le menu supérieur de Visual Studio Code, sélectionnez **Exécuter \| Démarrer le débogage** ou sélectionnez **F5**. Une fois le projet terminé, la création d’une fenêtre de navigateur doit être lancée avec l’application web en cours d’exécution.
+1. Dans le menu Visual Studio Code, sélectionnez **Exécuter \| Commencer le débogage** ou appuyez sur **F5**. Une fois le projet terminé, la création d’une fenêtre de navigateur doit être lancée avec l’application web en cours d’exécution
 
-1. Choisissez un élément dans la liste à modifier et sélectionnez **Modifier** dans cette ligne.
+1. Choisissez un élément dans la liste à modifier et sélectionnez **Modifier** dans cette rangée.
 
-1. Modifiez le nom du fruit et cochez la case pour modifier son état de disponibilité.
+1. Modifiez le nom du fruit et utilisez la case pour modifier son état de disponibilité.
 
-1. Sélectionnez **Mettre à jour** pour enregistrer vos modifications et vous serez redirigé vers la page d’accueil. Vérifiez que votre modification est affichée dans la liste.
+1. Sélectionnez **Mettre à jour** pour enregistrer vos modifications. Vous reviendrez ensuite à la page d’accueil. Vérifiez que votre modification s’affiche dans la liste.
 
-1. Pour continuer avec l’exercice, fermez le navigateur ou l’onglet de navigation, puis dans Visual Studio Code, sélectionnez **Exécuter \| Arrêter le débogage** ou effectuez **Maj + F5**.
+1. Pour continuer avec l’exercice, fermez le navigateur ou l’onglet, puis, dans Visual Studio Code, sélectionnez **Exécuter \| Arrêter le débogage** ou appuyez sur **Maj + F5**.
 
-## Implémenter du code pour gérer la fonctionnalité **Supprimer**
+## Implémenter du code pour gérer la fonction `Delete`
 
-Dans cette section, vous allez ajouter du code pour créer un formulaire dans le fichier *Delete.cshtml* afin d’activer la suppression de données dans la liste.
+Dans cette section, vous allez ajouter du code pour créer un formulaire dans le fichier *Delete.cshtml* afin d’activer la suppression de données à la liste.
 
-### Tâche 1 : ajouter du code pour le formulaire de suppression
+### Tâche 1 : ajouter du code pour le formulaire Supprimer des données
 
-1. Sélectionnez le fichier *Delete.cshtml* dans le volet **Explorateur** pour l’ouvrir et le modifier.
+1. Sélectionnez le fichier *Delete.cshtml* dans le volet **Explorateur** pour l’ouvrir dans l’éditeur.
 
 1. Ajoutez le code suivant entre les commentaires `@* Begin render Delete code block *@` et `@* End render Delete code block *@`.
 
@@ -303,23 +303,23 @@ Dans cette section, vous allez ajouter du code pour créer un formulaire dans le
     </form>
     ```
 
-1. Enregistrez les modifications apportées à *Delete.cshtml* et passez en revue les commentaires dans le code.
+1. Enregistrez les modifications apportées à *Delete.cshtml* et passez en revue les commentaires présents dans le code.
 
-1. Dans le menu supérieur de Visual Studio Code, sélectionnez **Exécuter \| Démarrer le débogage** ou sélectionnez **F5**. Une fois le projet terminé, la création d’une fenêtre de navigateur doit être lancée avec l’application web en cours d’exécution.
+1. Dans le menu Visual Studio Code, sélectionnez **Exécuter \| Commencer le débogage** ou appuyez sur **F5**. Une fois le projet terminé, la création d’une fenêtre de navigateur doit être lancée avec l’application web en cours d’exécution
 
-1. Choisissez un élément dans la liste à supprimer et sélectionnez **Supprimer** dans cette ligne.
+1. Choisissez un élément dans la liste à supprimer et sélectionnez **Supprimer** dans cette rangée.
 
-1. Sélectionnez **Supprimer** et vous serez dirigé vers la page d’accueil. Vérifiez que l’élément que vous avez supprimé n’est plus affiché dans la liste.
+1. Sélectionnez **Supprimer**. Vous reviendrez ensuite à la page d’accueil. Vérifiez que l’élément que vous avez supprimé n’est plus affiché dans la liste.
 
-Lorsque vous êtes prêt à terminer l’exercice :
+Lorsque vous êtes prêt(e) à terminer l’exercice, suivez les étapes suivantes :
 
-* Fermez le navigateur ou l’onglet de navigation et dans Visual Studio Code, sélectionnez **Exécuter \| Arrêter le débogage** ou effectuez **Maj + F5**. 
+* Fermer le navigateur ou l’onglet, puis, dans Visual Studio Code, sélectionner **Exécuter \| Arrêter le débogage** ou appuyer sur **Maj + F5** 
 
-* Arrêtez l’API Fruit en appuyant sur **Ctrl + C** sur le terminal dans lequel elle s’exécute.
+* Arrêter l’API Fruit en entrant `Ctrl + C` dans le terminal dans lequel elle s’exécute
 
 ## Révision
 
-Dans cet exercice, vous avez appris à :
+Dans cet exercice, vous avez appris à effectuer les opérations suivantes :
 
-* Implémenter des mots-clés Razor dans une application
-* Intégrer le code C# à la syntaxe Razor Pages
+* implémenter des mots-clés Razor dans une application
+* intégrer du code C# à la syntaxe Razor Pages

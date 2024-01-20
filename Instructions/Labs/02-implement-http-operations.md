@@ -1,61 +1,61 @@
 ---
 lab:
-  title: "Exercice\_: implémenter des opérations HTTP dans ASP.NET Core Razor Pages"
+  title: "Exercice\_: Implémenter des opérations HTTP dans ASP.NET Razor Pages"
   module: 'Module: Implement HTTP operations in ASP.NET Core Razor Pages'
 ---
 
-Dans cet exercice, vous allez découvrir comment ajouter le code nécessaire à une application ASP.NET Core Razor Pages pour créer le client HTTP et effectuer les opérations `GET`, `POST`, `PUT` et `DELETE`. Ce code est ajouté aux fichiers code-behind *.cshtml.cs*. Le code permettant d’afficher les données dans les fichiers *.cshtml* est terminé.
+Dans cet exercice, vous découvrirez comment ajouter le code à une application ASP.NET Core Razor Pages pour créer le client HTTP et effectuer les opérations `GET`, `POST`, `PUT` et `DELETE`. Ce code est ajouté aux fichiers code-behind *.cshtml.cs* . Le code permettant d’afficher les données dans les fichiers *.cshtml* est terminé.
 
 ## Objectifs
 
-À la fin de cet exercice, vous serez en mesure de :
+À l’issue de ce module, vous pourrez :
 
-* Implémenter `IHttpClientFactory` en tant que client HTTP
-* Implémenter des opérations HTTP dans ASP.NET Core Razor Pages
+* implémenter `IHttpClientFactory` en tant que client HTTP
+* implémenter des opérations HTTP dans ASP.NET Core Razor Pages
 
 ## Prérequis
 
-Pour terminer l’exercice, vous devez avoir installé les éléments suivants sur votre système :
+Pour effectuer l’exercice, les éléments suivants doivent être installés dans votre système :
 
 * [Visual Studio Code](https://code.visualstudio.com)
-* [La dernière version du kit de développement logiciel .NET 7.0](https://dotnet.microsoft.com/download/dotnet/7.0)
-* [L’extension C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) pour Visual Studio Code
+* [la dernière version du kit de développement logiciel (SDK) .NET 7.0](https://dotnet.microsoft.com/download/dotnet/7.0)
+* l’[Extension C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) pour Visual Studio Code
 
-**Estimation de la durée de cet exercice** : 30 minutes.
+**Estimation de la durée de cet exercice** : 30 minutes
 
 ## Scénario de l’exercice
 
 Cet exercice comporte deux composants :
 
-* Une application qui envoie des requêtes HTTP à une API L’application s’exécute sur `http://localhost:5010`.
-* Une API qui répond aux requêtes HTTP. L’API s’exécute sur `http://localhost:5050`.
+* une application qui envoie des requêtes HTTP à une API L’application s’exécute sur `http://localhost:5010`
+* une API qui répond aux requêtes HTTP L’API s’exécute sur `http://localhost:5050`
 
 ![Décoratif](media/02-architecture.png)
 
 
 ## Téléchargement du code
 
-Dans cette section, vous téléchargez le code de l’application web Fruit et de l’API Fruit. Vous exécutez également l’API Fruit localement afin qu’elle soit disponible pour l’application web.
+Dans cette section, vous allez télécharger le code de l’application web Fruit et de l’API Fruit. Vous allez également exécuter l’API Fruit localement afin qu’elle soit disponible pour l’application web.
 
-### Tâche 1 : télécharger et exécuter le code de l’API
+### Tâche 1 : télécharger et exécuter le code de l’API
 
-1. Cliquez avec le bouton droit sur le lien suivant et sélectionnez l’option **Enregistrer le lien sous**. 
+1. Cliquez avec le bouton droit sur le lien suivant, puis sélectionnez l’option **Enregistrer le lien**. 
 
-    * [code du projet FruitAPI](https://raw.githubusercontent.com/MicrosoftLearning/APL-2002-develop-aspnet-core-consumes-api/master/Allfiles/Downloads/FruitAPI.zip)
+    * [Code du projet FruitAPI](https://raw.githubusercontent.com/MicrosoftLearning/APL-2002-develop-aspnet-core-consumes-api/master/Allfiles/Downloads/FruitAPI.zip)
 
-1. Lancez l'**Explorateur de fichiers** et accédez à l’emplacement où le fichier a été enregistré.
+1. Ouvrez l’**Explorateur de fichiers** et accédez à l’emplacement où le fichier a été enregistré.
 
 1. Décompressez le fichier dans son propre dossier.
 
-1. Ouvrez le **Terminal Windows** ou une **Invite de commandes** et accédez à l’emplacement où vous avez extrait le code de l’API.
+1. Ouvrez **Terminal Windows** ou une **invite de commandes**, puis accédez à l’emplacement où vous avez extrait le code de l’API.
 
-1. Dans le volet **Terminal Windows**, exécutez la commande `dotnet` suivante :
+1. Dans le volet du **Terminal Windows**, exécutez la commande `dotnet` suivante :
 
     ```
     dotnet run
     ```
 
-1. Voici un exemple de sortie. Notez la ligne `Now listening on: http://localhost:5050` dans la sortie. Elle identifie l’hôte et le port de l’API.
+1. Voici un exemple de sortie générée. Notez la ligne `Now listening on: http://localhost:5050` dans la sortie. Elle indique l’hôte et le port de l’API.
 
     ```
     info: Microsoft.EntityFrameworkCore.Update[30100]
@@ -75,31 +75,31 @@ Dans cette section, vous téléchargez le code de l’application web Fruit et d
 
 ### Tâche 2 : télécharger et ouvrir le projet d’application web
 
-1. Cliquez avec le bouton droit sur le lien suivant et sélectionnez l’option **Enregistrer le lien sous**. 
+1. Cliquez avec le bouton droit sur le lien suivant, puis sélectionnez l’option **Enregistrer le lien**. 
 
     * [Code du projet code-behind de l’application web Fruit](https://raw.githubusercontent.com/MicrosoftLearning/APL-2002-develop-aspnet-core-consumes-api/master/Allfiles/Downloads/FruitWebApp-codebehind.zip)
 
-1. Lancez l'**Explorateur de fichiers** et accédez à l’emplacement où le fichier a été enregistré.
+1. Ouvrez l’**Explorateur de fichiers** et accédez à l’emplacement où le fichier a été enregistré.
 
 1. Décompressez le fichier dans son propre dossier.
 
-1. Lancez Visual Studio Code et sélectionnez **Fichier**, puis **Ouvrir le dossier...** dans la barre de menus.
+1. Dans Visual Studio Code, sélectionnez l**Fichier**, puis **Ouvrir le dossier** dans le menu.
 
-1. Accédez à l’emplacement où vous avez décompressé les fichiers projet et sélectionnez le dossier *FruitWebApp-codebehind*.
+1. Accédez à l’emplacement où vous avez décompressé les fichiers projet et sélectionnez le *dossier FruitWebApp-codebehind*.
 
-1. La structure du projet dans le volet **Explorateur** doit être similaire à la capture d’écran suivante. Si le volet **Explorateur** n’est pas visible, sélectionnez **Afficher**, puis **Explorateur** dans la barre de menus.
+1. La structure du projet dans le volet **Explorateur** doit être similaire à la capture d’écran suivante. Si le volet **Explorateur**n’est pas visible, dans le menu, sélectionnez **Affichage**, puis **Explorateur**.
 
     ![Capture d’écran montrant la structure du projet de l’application web Fruit.](media/02-web-app-cb-struture.png)
 
->**Remarque :** prenez le temps de passer en revue le code dans chacun des fichiers en cours de modification tout au long de cet exercice. Le code est fortement commenté et peut vous aider à comprendre la base de code.
+>**Remarque :** prenez le temps de passer en revue le code dans chacun des fichiers en cours de modification tout au long de cet exercice. Le code contient de nombreux commentaires qui peuvent vous aider à comprendre la base de code.
 
 ## Implémenter du code pour le client HTTP et l’opération `GET`
 
-L’application web Fruit affiche les exemples de données de l’API sur la page d’accueil. Vous devez ajouter du code pour implémenter le client HTTP et l’opération `GET` afin que l’application web dispose de données à afficher sur la page d’accueil lorsque vous la créez et l’exécutez pour la première fois.
+L’application web Fruit affiche les exemples de données d’API sur la page d’accueil. Vous devez ajouter du code pour implémenter le client HTTP et l’opération `GET` afin que l’application web dispose de données à afficher sur la page d’accueil lorsque vous la générez et l’exécutez pour la première fois.
 
 ### Tâche 1 : implémenter le client HTTP
 
-1. Sélectionnez le fichier *Program.cs* dans le volet **Explorateur** pour l’ouvrir et le modifier.
+1. Sélectionnez le fichier *Program.cs* dans le volet **Explorateur** pour l’ouvrir dans l’éditeur.
 
 1. Ajoutez le code suivant entre les commentaires `// Begin HTTP client code` et `// End of HTTP client code`.
 
@@ -114,9 +114,9 @@ L’application web Fruit affiche les exemples de données de l’API sur la pag
 
 1. Enregistrez les modifications apportées à *Program.cs*.
 
-### Tâche 2 : implémenter l’opération GET
+### Tâche 2 : implémenter l’opération `GET`
 
-1. Sélectionnez le fichier *Index.cshtml.cs* dans le volet **Explorateur** pour l’ouvrir et le modifier.
+1. Sélectionnez le fichier *Index.cshtml.cs* dans le volet **Explorateur** pour l’ouvrir dans l’éditeur.
 
 1. Ajoutez le code suivant entre les commentaires `// Begin GET operation code` et `// End GET operation code`.
 
@@ -142,29 +142,29 @@ L’application web Fruit affiche les exemples de données de l’API sur la pag
 
 1. Enregistrez les modifications apportées à *Index.cshtml.cs*.
 
-1. Vérifiez le code dans le fichier *Index.cshtml.cs*. Notez où `IHttpClientFactory` est ajouté à la page avec l’injection de dépendances. Notez également que le modèle de données est lié à la page à l’aide de l’attribut `[BindProperty]`.
+1. Passez en revue le code du fichier *Index.cshtml.cs*. Notez où `IHttpClientFactory` a été ajouté sur la page avec l’injection de dépendances. Notez également que le modèle de données est lié à la page à l’aide de l’attribut `[BindProperty]`.
 
-### Tâche 3 : exécuter l’application web
+### Étape 3 : exécuter l’application web
 
-1. Dans le menu supérieur de Visual Studio Code, sélectionnez **Exécuter \| Démarrer le débogage** ou sélectionnez **F5**. Une fois la création du projet terminée, une fenêtre de navigateur doit se lancer avec l’application Web en cours d’exécution et afficher les exemples de données de l’API, comme indiqué dans la capture d’écran suivante.
+1. Dans le menu Visual Studio Code, sélectionnez **Exécuter \| Commencer le débogage** ou appuyez sur **F5**. Une fois le projet terminé, une fenêtre de navigateur doit être lancée avec l’application web en cours d’exécution et l’affichage des exemples de données d’API, comme illustré dans la capture d’écran suivante.
 
     ![Capture d’écran de l’application web affichant les exemples de données.](media/02-web-app-get-sample-data.png)
 
-    >**Remarque :** plus loin dans l’exercice, vous ajouterez du code pour activer les fonctionnalités d’ajout, de modification et de suppression de l’application web. 
+    >**Remarque :** plus loin dans l’exercice, vous allez ajouter du code pour activer les fonctions d’ajout, de modification et de suppression de l’application web. 
 
     >**Remarque :** vous pouvez ignorer en toute sécurité l’invite ci-dessous si elle apparaît lorsque vous exécutez l’application.
 
     ![Capture d’écran de l’invite permettant d’installer un certificat auto-signé.](media/install-cert.png)
 
-1. Pour continuer avec l’exercice, fermez le navigateur ou l’onglet de navigation, puis dans Visual Studio Code, sélectionnez **Exécuter \| Arrêter le débogage** ou effectuez **Maj + F5**.
+1. Pour continuer avec l’exercice, fermez le navigateur ou l’onglet, puis, dans Visual Studio Code, sélectionnez **Exécuter \| Arrêter le débogage** ou appuyez sur **Maj + F5**.
 
-## Implémenter du code pour les opérations POST, PUT et DELETE
+## Implémenter du code pour le client HTTP et les opérations `POST`, `PUT` et `DELETE`
 
-Dans cette section, vous allez ajouter du code au projet pour activer les fonctionnalités **Ajouter à la liste**, **Modifier** et **Supprimer** dans l’application web. 
+Dans cette section, vous allez ajouter du code au projet pour activer les fonctions **Ajouter à la liste**, **Modifier** et **Supprimer** dans l’application web. 
 
-### Tâche 1 : implémenter l’opération POST
+### Tâche 1 : implémenter l’opération `POST`
 
-1. Sélectionnez le fichier *Add.cshtml.cs* dans le volet **Explorateur** pour l’ouvrir et le modifier.
+1. Sélectionnez le fichier *Add.cshtml.cs* dans le volet **Explorateur** pour l’ouvrir dans l’éditeur.
 
 1. Ajoutez le code suivant entre les commentaires `// Begin POST operation code` et `// End POST operation code`.
 
@@ -198,19 +198,19 @@ Dans cette section, vous allez ajouter du code au projet pour activer les foncti
     }
     ```
 
-1. Enregistrez les modifications apportées à *Add.cshtml.cs* et passez en revue les commentaires dans le code.
+1. Enregistrez les modifications apportées à *Add.cshtml.cs* et passez en revue les commentaires présents dans le code.
 
-1. Dans le menu supérieur de Visual Studio Code, sélectionnez **Exécuter \| Démarrer le débogage** ou sélectionnez **F5**. Une fois le projet terminé, la création d’une fenêtre de navigateur doit être lancée avec l’application web en cours d’exécution.
+1. Dans le menu Visual Studio Code, sélectionnez **Exécuter \| Commencer le débogage** ou appuyez sur **F5**. Une fois le projet terminé, la création d’une fenêtre de navigateur doit être lancée avec l’application web en cours d’exécution
 
 1. Sélectionnez le bouton **Ajouter à la liste** et renseignez le formulaire généré. Ensuite, cliquez sur le bouton **Créer**.
 
-1. Vérifiez que votre ajout apparaît en bas de la liste. Le message de réussite/d’échec en haut de la page vous avertira en cas de problème.
+1. Vérifiez que votre ajout apparaît en bas de la liste. Le message de réussite/échec situé en haut de la page vous avertira s’il y a un problème.
 
-1. Pour continuer avec l’exercice, fermez le navigateur ou l’onglet de navigation, puis dans Visual Studio Code, sélectionnez **Exécuter \| Arrêter le débogage** ou effectuez **Maj + F5**.
+1. Pour continuer avec l’exercice, fermez le navigateur ou l’onglet, puis, dans Visual Studio Code, sélectionnez **Exécuter \| Arrêter le débogage** ou appuyez sur **Maj + F5**.
 
-### Tâche 1 : implémenter l’opération PUT
+### Tâche 1 : implémenter l’opération `PUT`
 
-1. Sélectionnez le fichier *Edit.cshtml.cs* dans le volet **Explorateur** pour l’ouvrir et le modifier.
+1. Sélectionnez le fichier *Edit.cshtml.cs* dans le volet **Explorateur** pour l’ouvrir dans l’éditeur.
 
 1. Ajoutez le code suivant entre les commentaires `// Begin PUT operation code` et `// End PUT operation code`.
 
@@ -245,20 +245,20 @@ Dans cette section, vous allez ajouter du code au projet pour activer les foncti
         }
     ```
 
-1. Enregistrez les modifications apportées à *Edit.cshtml.cs* et passez en revue les commentaires dans le code.
+1. Enregistrez les modifications apportées à *Edit.cshtml.cs* et passez en revue les commentaires présents dans le code.
 
-1. Dans le menu supérieur de Visual Studio Code, sélectionnez **Exécuter \| Démarrer le débogage** ou sélectionnez **F5**. Une fois le projet terminé, la création d’une fenêtre de navigateur doit être lancée avec l’application web en cours d’exécution.
+1. Dans le menu Visual Studio Code, sélectionnez **Exécuter \| Commencer le débogage** ou appuyez sur **F5**. Une fois le projet terminé, la création d’une fenêtre de navigateur doit être lancée avec l’application web en cours d’exécution
 
 1. Choisissez un élément dans la liste à modifier et sélectionnez le bouton **Modifier**. 
-1. Modifiez le **Nom du fruit** et le champ **Disponible ?**, puis sélectionnez **Mettre à jour**.
+1. Modifiez le **Nom de fruit** et le champ **Disponible ?**, puis sélectionnez **Mettre à jour**.
 
-1. Vérifiez que vos modifications apparaissent dans la liste. Le message de réussite/d’échec en haut de la page vous avertira en cas de problème.
+1. Vérifiez que vos modifications apparaissent dans la liste. Le message de réussite/échec situé en haut de la page vous avertira s’il y a un problème.
 
-1. Pour continuer avec l’exercice, fermez le navigateur ou l’onglet de navigation, puis dans Visual Studio Code, sélectionnez **Exécuter \| Arrêter le débogage** ou effectuez **Maj + F5**.
+1. Pour continuer avec l’exercice, fermez le navigateur ou l’onglet, puis, dans Visual Studio Code, sélectionnez **Exécuter \| Arrêter le débogage** ou appuyez sur **Maj + F5**.
 
-### Tâche 1 : implémenter l’opération DELETE
+### Tâche 1 : implémenter l’opération `DELETE`
 
-1. Sélectionnez le fichier *Delete.cshtml.cs* dans le volet **Explorateur** pour l’ouvrir et le modifier.
+1. Sélectionnez le fichier *Delete.cshtml.cs* dans le volet **Explorateur** pour l’ouvrir dans l’éditeur.
 
 1. Ajoutez le code suivant entre les commentaires `// Begin DELETE operation code` et `// End DELETE operation code`.
 
@@ -287,25 +287,25 @@ Dans cette section, vous allez ajouter du code au projet pour activer les foncti
     }
     ```
 
-1. Enregistrez les modifications apportées à *Delete.cshtml.cs* et passez en revue les commentaires dans le code.
+1. Enregistrez les modifications apportées à *Delete.cshtml.cs* et passez en revue les commentaires présents dans le code.
 
-1. Dans le menu supérieur de Visual Studio Code, sélectionnez **Exécuter \| Démarrer le débogage** ou sélectionnez **F5**. Une fois le projet terminé, la création d’une fenêtre de navigateur doit être lancée avec l’application web en cours d’exécution.
+1. Dans le menu Visual Studio Code, sélectionnez **Exécuter \| Commencer le débogage** ou appuyez sur **F5**. Une fois le projet terminé, la création d’une fenêtre de navigateur doit être lancée avec l’application web en cours d’exécution
 
 1. Choisissez un élément dans la liste à supprimer et sélectionnez le bouton **Supprimer**. 
 
-1. Modifiez le **Nom du fruit** et le champ **Disponible ?**, puis sélectionnez **Mettre à jour**.
+1. Modifiez le **Nom de fruit** et le champ **Disponible ?**, puis sélectionnez **Mettre à jour**.
 
-1. Vérifiez que l’élément n’apparaît plus dans la liste. Le message de réussite/d’échec en haut de la page vous avertira en cas de problème.
+1. Vérifiez que l’élément n’apparaît plus dans la liste. Le message de réussite/échec situé en haut de la page vous avertira s’il y a un problème.
 
-Lorsque vous êtes prêt à terminer l’exercice :
+Lorsque vous êtes prêt(e) à terminer l’exercice, suivez les étapes suivantes :
 
-* Fermez le navigateur ou l’onglet de navigation et dans Visual Studio Code, sélectionnez **Exécuter \| Arrêter le débogage** ou effectuez **Maj + F5**. 
+* Fermer le navigateur ou l’onglet, puis, dans Visual Studio Code, sélectionner **Exécuter \| Arrêter le débogage** ou appuyer sur **Maj + F5** 
 
-* Arrêtez l’API Fruit en appuyant sur **Ctrl + C** sur le terminal dans lequel elle s’exécute.
+* Arrêter l’API Fruit en entrant `Ctrl + C` dans le terminal dans lequel elle s’exécute
 
 ## Révision
 
-Dans cet exercice, vous avez appris à :
+Dans cet exercice, vous avez appris à effectuer les opérations suivantes :
 
 * Implémenter `IHttpClientFactory` en tant que client HTTP
-* Implémenter des opérations HTTP dans les fichiers code-behind ASP.NET Core Razor Pages
+* Implémenter des opérations HTTP dans les fichiers code-behind d’ASP.NET Core Razor Pages
