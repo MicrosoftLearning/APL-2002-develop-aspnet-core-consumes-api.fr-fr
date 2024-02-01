@@ -19,7 +19,7 @@ Pour effectuer l’exercice, les éléments suivants doivent être installés da
 
 * [Visual Studio Code](https://code.visualstudio.com)
 * [la dernière version du kit de développement logiciel (SDK) .NET 7.0](https://dotnet.microsoft.com/download/dotnet/7.0)
-* l’[Extension C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) pour Visual Studio Code
+* L’[Extension C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) pour Visual Studio Code
 
 **Estimation de la durée de cet exercice** : 30 minutes
 
@@ -28,7 +28,7 @@ Pour effectuer l’exercice, les éléments suivants doivent être installés da
 Cet exercice comporte deux composants :
 
 * une application qui envoie des requêtes HTTP à une API L’application s’exécute sur `http://localhost:5010`
-* une API qui répond aux requêtes HTTP L’API s’exécute sur `http://localhost:5050`
+* une API qui répond aux requêtes HTTP L’application s’exécute sur `http://localhost:5050`
 
 ![Décoratif](media/02-architecture.png)
 
@@ -47,7 +47,7 @@ Dans cette section, vous allez télécharger le code de l’application web Frui
 
 1. Décompressez le fichier dans son propre dossier.
 
-1. Ouvrez **Terminal Windows** ou une **invite de commandes**, puis accédez à l’emplacement où vous avez extrait le code de l’API.
+1. Ouvrez **Terminal Windows**, ou une **invite de commandes**, puis accédez à l’emplacement où vous avez extrait le code de l’API.
 
 1. Dans le volet du **Terminal Windows**, exécutez la commande `dotnet` suivante :
 
@@ -114,9 +114,9 @@ L’application web Fruit affiche les exemples de données d’API sur la page d
 
 1. Enregistrez les modifications apportées à *Program.cs*.
 
-### Tâche 2 : implémenter l’opération `GET`
+### Tâche 2 : implémenter l’opération GET
 
-1. Sélectionnez le fichier *Index.cshtml.cs* dans le volet **Explorateur** pour l’ouvrir dans l’éditeur.
+1. Sélectionnez le fichier *Index.cshtml.cs* dans le volet **Explorateur** pour l’ouvrir et le modifier.
 
 1. Ajoutez le code suivant entre les commentaires `// Begin GET operation code` et `// End GET operation code`.
 
@@ -156,15 +156,15 @@ L’application web Fruit affiche les exemples de données d’API sur la page d
 
     ![Capture d’écran de l’invite permettant d’installer un certificat auto-signé.](media/install-cert.png)
 
-1. Pour continuer avec l’exercice, fermez le navigateur ou l’onglet, puis, dans Visual Studio Code, sélectionnez **Exécuter \| Arrêter le débogage** ou appuyez sur **Maj + F5**.
+1. Pour continuer avec l’exercice, fermez le navigateur ou l’onglet de navigation, puis dans Visual Studio Code, sélectionnez **Exécuter \| Arrêter le débogage** ou effectuez **Maj + F5**.
 
-## Implémenter du code pour le client HTTP et les opérations `POST`, `PUT` et `DELETE`
+## Implémenter du code pour les opérations POST, PUT et DELETE
 
-Dans cette section, vous allez ajouter du code au projet pour activer les fonctions **Ajouter à la liste**, **Modifier** et **Supprimer** dans l’application web. 
+Dans cette section, vous allez ajouter du code au projet pour activer les fonctionnalités **Ajouter à la liste**, **Modifier** et **Supprimer** dans l’application web. 
 
-### Tâche 1 : implémenter l’opération `POST`
+### Tâche 1 : implémenter l’opération POST
 
-1. Sélectionnez le fichier *Add.cshtml.cs* dans le volet **Explorateur** pour l’ouvrir dans l’éditeur.
+1. Sélectionnez le fichier *Add.cshtml.cs* dans le volet **Explorateur** pour l’ouvrir et le modifier.
 
 1. Ajoutez le code suivant entre les commentaires `// Begin POST operation code` et `// End POST operation code`.
 
@@ -206,11 +206,11 @@ Dans cette section, vous allez ajouter du code au projet pour activer les foncti
 
 1. Vérifiez que votre ajout apparaît en bas de la liste. Le message de réussite/échec situé en haut de la page vous avertira s’il y a un problème.
 
-1. Pour continuer avec l’exercice, fermez le navigateur ou l’onglet, puis, dans Visual Studio Code, sélectionnez **Exécuter \| Arrêter le débogage** ou appuyez sur **Maj + F5**.
+1. Pour continuer avec l’exercice, fermez le navigateur ou l’onglet de navigation, puis dans Visual Studio Code, sélectionnez **Exécuter \| Arrêter le débogage** ou effectuez **Maj + F5**.
 
-### Tâche 1 : implémenter l’opération `PUT`
+### Tâche 1 : implémenter l’opération PUT
 
-1. Sélectionnez le fichier *Edit.cshtml.cs* dans le volet **Explorateur** pour l’ouvrir dans l’éditeur.
+1. Sélectionnez le fichier *Edit.cshtml.cs* dans le volet **Explorateur** pour l’ouvrir et le modifier.
 
 1. Ajoutez le code suivant entre les commentaires `// Begin PUT operation code` et `// End PUT operation code`.
 
@@ -254,11 +254,11 @@ Dans cette section, vous allez ajouter du code au projet pour activer les foncti
 
 1. Vérifiez que vos modifications apparaissent dans la liste. Le message de réussite/échec situé en haut de la page vous avertira s’il y a un problème.
 
-1. Pour continuer avec l’exercice, fermez le navigateur ou l’onglet, puis, dans Visual Studio Code, sélectionnez **Exécuter \| Arrêter le débogage** ou appuyez sur **Maj + F5**.
+1. Pour continuer avec l’exercice, fermez le navigateur ou l’onglet de navigation, puis dans Visual Studio Code, sélectionnez **Exécuter \| Arrêter le débogage** ou effectuez **Maj + F5**.
 
-### Tâche 1 : implémenter l’opération `DELETE`
+### Tâche 1 : implémenter l’opération DELETE
 
-1. Sélectionnez le fichier *Delete.cshtml.cs* dans le volet **Explorateur** pour l’ouvrir dans l’éditeur.
+1. Sélectionnez le fichier *Delete.cshtml.cs* dans le volet **Explorateur** pour l’ouvrir et le modifier.
 
 1. Ajoutez le code suivant entre les commentaires `// Begin DELETE operation code` et `// End DELETE operation code`.
 
@@ -291,17 +291,16 @@ Dans cette section, vous allez ajouter du code au projet pour activer les foncti
 
 1. Dans le menu Visual Studio Code, sélectionnez **Exécuter \| Commencer le débogage** ou appuyez sur **F5**. Une fois le projet terminé, la création d’une fenêtre de navigateur doit être lancée avec l’application web en cours d’exécution
 
-1. Choisissez un élément dans la liste à supprimer et sélectionnez le bouton **Supprimer**. 
-
-1. Modifiez le **Nom de fruit** et le champ **Disponible ?**, puis sélectionnez **Mettre à jour**.
+1. Choisissez un élément dans la liste à supprimer et sélectionnez le bouton **Supprimer**.
+2. Dans la page Supprimer, vérifiez que l’élément que vous avez sélectionné s’affiche, puis cliquez sur le bouton **Supprimer** .
 
 1. Vérifiez que l’élément n’apparaît plus dans la liste. Le message de réussite/échec situé en haut de la page vous avertira s’il y a un problème.
 
 Lorsque vous êtes prêt(e) à terminer l’exercice, suivez les étapes suivantes :
 
-* Fermer le navigateur ou l’onglet, puis, dans Visual Studio Code, sélectionner **Exécuter \| Arrêter le débogage** ou appuyer sur **Maj + F5** 
+* Fermez le navigateur ou l’onglet de navigation et dans Visual Studio Code, sélectionnez **Exécuter \| Arrêter le débogage** ou effectuez **Maj + F5**. 
 
-* Arrêter l’API Fruit en entrant `Ctrl + C` dans le terminal dans lequel elle s’exécute
+* Arrêtez l’API Fruit en appuyant sur **Ctrl + C** sur le terminal dans lequel elle s’exécute.
 
 ## Révision
 
