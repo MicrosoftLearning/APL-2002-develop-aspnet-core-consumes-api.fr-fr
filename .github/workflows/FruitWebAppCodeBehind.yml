@@ -1,0 +1,29 @@
+name: FruitWebApp CodeBehind
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'master'
+    paths:
+      - Allfiles/Labs/FruitWebApp-codebehind/**
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  create_zip:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Create Fruit zip
+      run: | 
+        cd ./Allfiles/Labs/FruitWebApp-codebehind
+        zip -r -q ../../Downloads/FruitWebApp-codebehind.zip * .vscode/*
+    - name: Commit and push
+      uses: Endbug/add-and-commit@v7
+      with:
+        add: '["Allfiles/Downloads/FruitWebApp-codebehind.zip"]'
+        message: 'Updating Zip for code-behind source files'
+        push: true

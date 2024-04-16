@@ -1,0 +1,30 @@
+name: FruitAPI
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'master'
+    paths:
+      - Allfiles/Labs/FruitAPI/**
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  create_zip:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Create FruitAPI zip
+      run: | 
+        cd ./Allfiles/Labs/FruitAPI
+        zip -r -q ../../Downloads/FruitAPI.zip * .vscode/*
+    - name: Commit and push
+      uses: Endbug/add-and-commit@v7
+      with:
+        add: '["Allfiles/Downloads/FruitAPI.zip"]'
+        message: 'Updating Zip for API source files'
+        push: true
+
