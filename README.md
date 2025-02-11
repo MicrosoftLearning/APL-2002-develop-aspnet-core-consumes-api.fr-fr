@@ -1,3 +1,11 @@
+#README
+
+We've turned off the ability to report issues directly on this repo and do not monitor PRs.
+
+Provide feedback here: https://aka.ms/provide-feedback
+
+Or, if you are a trainer with a microsoft.com email address, please create a ticket in AzDO.
+
 # Développez une application web ASP.NET Core qui consomme une API
 
 Vous cherchez des **[pages](https://microsoftlearning.github.io/APL-2002-develop-aspnet-core-consumes-api/)** HTML ?
